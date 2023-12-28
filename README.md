@@ -134,6 +134,34 @@ if request.files.get("image"):
 도감 기능을 구현하기 위해서는 객체 인식 후 새로운 trashcode와 기존 사용자의 trashcode를 비교하여 중복을 제거하고, 새로운 trashcode인 경우에만 사용자의 도감에 저장해야 합니다. 기존 방식은 ArrayList를 사용하여 사용자의 trashcode와 새로운 trashcode를 모두 비교하는 방식이었는데, 이는 오류가 발생할 가능성이 높고, trashcode가 늘어날수록 처리 시간이 길어질 수 있습니다.
 
 그래서 HashSet 자료형을 활용하여 기존 사용자의 trashcode와 새로운 trashcode를 중복 없이 저장하는 방식을 선택했습니다. HashSet은 중복된 값을 허용하지 않으므로 중복된 trashcode를 쉽게 제거할 수 있었습니다. 이를 통해 코드를 간소화하고 처리 속도를 향상시켰습니다
+```java
+            /*회원별 키워드 저장*/
+            //회원 id 값으로 trashcode 받아오기
+            Member accounts = accountsRepository.findById(pid).orElse(null); 
+            log.info("회원이 가지고 있던 코드: "+accounts.getTrashcode());
+
+
+            //기존 사용자의 keyword와 새 keyword 중복제거(HashSet: 인덱스 활용불가, 순서x)
+            HashSet<String> newkeyword = new HashSet<String>(); // 타입 지정
+            //기존 Trashcode가 존재할때
+            if(accounts.getTrashcode()!=null) {
+                String str = accounts.getTrashcode();
+                String[] array = str.split(" "); //필요한 코드 데이터 자르기
+                for (int i = 0; i < array.length; i++) {
+                    /*로그인된 사용자가 기존에 가지고 있던 trashcode*/
+                    newkeyword.add(array[i]);
+                }
+            }
+
+            for (String data : result) {
+                /*새롭게 객체인식을 통해 들어온 trashcode*/
+                newkeyword.add(data);
+            }
+            log.info("save" + newkeyword.toString());
+```
+<div align="center">
+  Springboot/Yolov5_controller/trashcode 중복 제거 부분 코드
+</div><br/>
 ## 👩🏻‍💻 멤버
 
 
