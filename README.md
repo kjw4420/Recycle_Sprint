@@ -23,19 +23,29 @@
 ![포폴_졸프_포스터](https://github.com/kjw4420/Spring_Recycle/assets/97749184/7aaaa9d9-adcf-4737-a163-4113c1f11334)
 
 
-## 📗 주요 기능
-🔍**회원가입 및 로그인**<br>
-이메일 인증 회원가입/로그인 및 소셜(카카오) 회원가입/로그인을 지원한다. <br><br>
-🔍**게시글 CRUD/댓글**<br>
-각종 농촌 정보, 농산물 판매 게시글, 농촌 봉사활동 구인 게시글 등의 CRUD 구현. 자유 게시판 형태의 농사랑 방은 게시글에 댓글을 작성/삭제하는 기능을 추가하여 정보 공유의 목적을 뚜렷하게 한다.<br><br>
-🔍**채팅**<br>
-개인 간의 거래(농산물 거래, 농촌 봉사활동 신청)을 위해 게시글 pk 값으로 채팅방을 개설하여 사용자가 대화할 수 있도록 한다.(채팅을 통한 사용자 간 거래)<br><br>
-🔍**검색**<br>
-게시판에서 키워드, 제목 등의 검색을 지원한다.<br><br>
-🔍**좋아요(스크랩)**<br>
-관리자만 게시글을 작성할 수 있는 최신 농업 기술 모음집과 거래 목적의 게시판(농산물 거래, 일손 구하기)은 좋아요 기능을 구현하여 따로 확인할 수 있도록 한다.<br><br>
-🔍**마이페이지**<br>
-회원별 활동 파악. 회원 정보, 로그아웃 및 내가 찜한 상품, 내가 찜한 봉사, 나의 농사랑 방으로 자신이 스크랩한 글과 작성한 게시판 글을 관리한다.<br><br>
+# 📝문제해결: Json Parsing
+
+Springboot에서 Json 데이터를 받아 파싱 해 사용해 본 것은 처음이었습니다. 첫 버전에서는 ‘Flask에서 보낸 데이터를 SpringBoot에서 처리가 아닌 받는다’에만 집중해 Flask에서 Json 데이터를 자체적으로 SpringBoot 서비스에서 요구하는 형태로 변형해 전달했습니다.
+
+```python
+if request.files.get("image"):
+        image_file = request.files["image"]
+        image_bytes = image_file.read()
+        img = Image.open(io.BytesIO(image_bytes))
+        
+        temp = model(img, size=320) # reduce size=320 for faster inference
+        
+        results=temp.pandas().xyxy[0].to_json(orient="columns")
+        index=results.rindex('{')
+        res={
+            'name': results[index:-1]
+        }
+        return jsonify(res)
+```
+
+Flask/restapi.py
+
+하지만 위 코드는 데이터의 형식/구성이 조금만 변해도 오류가 잘못된 데이터가 넘어오는 오류가 빈번하게 발생했고, Json 자료형의 장점을 전혀 사용하지 못하고 있다는 생각이 들었습니다. 이를 개선하기 위해 두 번째 버전에서는 SpringBoot 단에서 Json.Simple 라이브러리로 JsonObject/ Parser을 생성해 Json 데이터를 Parsing 했습니다. ~~데이터가 마트료시카 인형처럼 벗겨진다는 생각이 들었습니다.~~ 개발자가 성능 향상을 위해 끊임없이 고민해야 하는 이유를 몸소 체험한 계기였습니다. 사소한 코드를 몇 줄 바꿨는데 그 이상의 성능 향상을 경험했습니다.
 
 ## 👩🏻‍💻 멤버
 
