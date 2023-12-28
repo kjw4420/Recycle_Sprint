@@ -54,6 +54,79 @@ if request.files.get("image"):
 - API 서버로  POST요청을 넣어 객체인식을 마친 후 받아온 JSON 객체를 json.simple 라이브러리를 이용해 파싱했다.
 - 이 결과를 이용해 사용자 화면에 결과 값을 보여주고, 도감에 해당 내용을 저장한다.
 
+```Java
+    @PostMapping(value = "/picture/{pid}")
+    public String picture(@RequestParam("image") MultipartFile image, Model model, @PathVariable Long pid ){
+        if (image.isEmpty()) {
+            model.addAttribute("error", "이미지가 선택되지 않았습니다.");
+            return "picture";
+        }
+
+        try {
+            byte[] imageData = image.getBytes();
+
+            // 플라스크 API 엔드포인트 URL
+            String flaskApiUrl = "http://127.0.0.1:5000/v1/object-detection/Trash1";
+
+            // HTTP 요청 생성
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            // 수정
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("image", new ByteArrayResource(imageData) {
+                @Override
+                public String getFilename() {
+                    return image.getOriginalFilename();
+                }
+            });
+
+
+            HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.exchange(flaskApiUrl, HttpMethod.POST, requestEntity, String.class);
+
+            log.info("response: " + response);
+            String json = response.getBody();
+            log.info("json: " + json);
+
+
+            JSONParser parser = new JSONParser();
+            log.info("parser");
+
+            JSONObject object = (JSONObject) parser.parse(json);
+            log.info("object: "+ object);
+
+            //img 저장 절대경로(yolo 결과 이미지 출력)
+            String path=(String)object.get("img");
+            log.info("path: "+path); //시간
+                try {
+                    // 이미지 파일을 읽어와서 바이트 배열로 변환
+                    Path imagePath = Paths.get(path);
+                    byte[] imageBytes = Files.readAllBytes(imagePath);
+
+                    String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                    model.addAttribute("base64Image", base64Image);
+                } catch (IOException e) {
+                    // 이미지 파일 읽기 실패 시 예외 처리
+                    e.printStackTrace(); // 또는 로깅을 사용하여 예외를 기록할 수 있습니다.
+                }
+
+
+            //yolo결과
+            String result1=(String)object.get("result");
+            log.info("result: "+result1);
+
+            JSONObject resultObj = (JSONObject) parser.parse(result1);
+            log.info("resultObj: "+ resultObj);
+
+            JSONObject Name = (JSONObject) resultObj.get("name");
+//            String Name=(String)resultObj.get("name");
+            log.info("Name: "+Name);
+
+```
+
 ## 👩🏻‍💻 멤버
 
 
