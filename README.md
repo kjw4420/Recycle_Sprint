@@ -171,7 +171,7 @@ if request.files.get("image"):
 |               | github                             |
 | ------------- | ---------------------------------- |
 | 김다빈 |    https://github.com/KIMDAB1N|
-| 이은상      |     |
+| 이은상      |  https://github.com/eunxang   |
 
 
 ### back-end
