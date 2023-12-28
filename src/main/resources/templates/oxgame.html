@@ -28,7 +28,16 @@
 <form th:action="@{/oxgame}" method="post" >
     <div sec:authorize="isAuthenticated()">
         <input style="display: none;" name="score" id="score" />
-        <button class="buttons" type="submit" id="hidebutton" style="display: none;" >포인트 저장하기</button>
+        <button class="buttons" type="submit" id="hidebutton" style="display: none; position:absolute; left:10%; bottom:20%; padding: 10px;
+    width: 80vw;
+    height: 10vh;
+    font-size: 16px;
+    color: #333;
+    background: #eed0dc;
+    border: 1px solid #ffe3ed;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all .2s;" >포인트 저장하기</button>
     </div>
 </form>
     

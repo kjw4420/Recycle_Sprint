@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/save-trash.css">
+</head>
+
+<body>
+<div class="intro-wrap">
+    <div class="big">HISTORY</div>
+    <div class="small">내가 그동안 버렸던 쓰레기를 확인하고 지구를 <br> 위한 작은 노력을 함께해요!</div>
+</div>
+<div class="grid-wrap">
+    <tr th:each="TrashList: ${TrashList}">
+        <div class="content">
+        <img th:src="@{${TrashList.filepath}}" alt="" class="trash-pic">
+            <div th:text="${TrashList.name}">플라스틱</div>
+        </div>
+    </tr>
+
+
+<!--  <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <img src="/img/쌍둥바옹.png" alt="" class="trash-pic">-->
+<!--        <p>플라스틱</p>-->
+<!--    </div>-->
+</div>
+
+</body>
+
+</html>

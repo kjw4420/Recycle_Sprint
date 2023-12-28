@@ -34,22 +34,31 @@
 
             <div class="card swiper-slide" style="background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);">
                 <div class="card__content" style="width: 300px;">
-                    <div class="point-wrap"><span>현재 순위</span><button class="submit" onclick="location.href='../ranking/ranking.html'">더보기</button></div>
+                    <div class="point-wrap"><span>현재 순위</span><button class="submit" th:onclick="|location.href='/Accounts/${pid}/rank'|">더보기</button></div>
                     <br>자신의 거주 지역에서 1등을 해보세요.
-                    <div class="point"><br>해미면 기준 3위</div>
+                    <div class="point"><br><span th:text="${area}"></span> 기준 <span th:text="${ranking}"></span>위</div>
+                </div>
+            </div>
+
+            <div class="card swiper-slide" style="background: linear-gradient(0deg, rgb(255, 191, 249) 0%, rgb(133, 231, 255) 100%);">
+                <div class="card__content" style="width: 300px;">
+                    <div class="point-wrap"><span>나의 정화활동</span><button class="submit" th:onclick="|location.href='/Accounts/${pid}/book'|">확인하기</button></div>
+                    <br>지구를 지켜나가는 우리 모두의 작은 기록!
+                    <div class="point"><br><span th:text="${trashnum}"></span> 개</div>
                 </div>
             </div>
     </section>
 
     <!-- 쓰레기 객체 인식 -->
-    <div class="object-camera" onclick="location.href='/picture'">
+<!--    <div class="object-camera" onclick="location.href='/picture'">-->
+    <div class="object-camera" th:onclick="|location.href='/picture/${pid}'|">
         쓰레기 인식 📸<br><br>
         <span style="font-size: 14px;">카메라를 이용해 쓰레기를 인식하고<br> 분리수거 하세요.</span>
     </div>
 
-    <div class="AR">
-        증강현실맵 🔮<br><br>
-        <span style="font-size: 14px;">카메라를 켜 보이는 쓰레기를 비춰보세요!<br> 귀여운 몬스터가 나와요 .. 아마도.. </span>
+    <div class="AR" onclick="location.href='/edu-video'">
+        교육 영상 🖥<br><br>
+        <span style="font-size: 14px;">애니메이션을 통해 쓰레기를 어떻게 <br> 버리는지 공부해요! </span>
     </div>
 
     <!-- 미니게임 -->

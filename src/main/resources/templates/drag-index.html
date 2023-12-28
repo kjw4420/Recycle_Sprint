@@ -26,7 +26,7 @@
 
 <body>
     <div class="gameLayout">
-        <h1><img src="../img/img/earth.png" alt="분리수거의 달인" style="width: 20vw;"/></h1>
+        <h1><img src="../img/earth.png" alt="분리수거의 달인" style="width: 20vw;"/></h1>
         <div class="gameLBox">
             <p class="gameLv"><span>1</span>단계</p>
             <p class="gameT"><span>60</span>초</p>
@@ -165,7 +165,13 @@
                         </tr>
                     </tbody>
                 </table>
-                <button type="button"><img src="./img/btn_guideClose.png" alt="닫기"></button>
+                <form th:action="@{/draggame}" method="post" >
+                    <div sec:authorize="isAuthenticated()">
+                        <input name="score" id="score" style="display: none;">
+                        <!--                        <button class="button" type="submit" alt="포인트 저장" > 포인트 저장 </button>-->
+                        <button type="submit"><img src="./img/btn_guideClose.png" alt="포인트 저장 및 창 닫기"></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

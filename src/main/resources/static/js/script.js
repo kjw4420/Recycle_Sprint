@@ -70,6 +70,10 @@ gN.end = function(){
 	}else{
 		$(".gameEnd .successB").text(gN.lEndText[3]);
 	}
+    const scoreInput = document.getElementById('score');
+            if (scoreInput) {
+                            scoreInput.value = gN.score;
+            }
 }
 gN.ready = function(){
 	$(".gameLayout").removeClass("on");

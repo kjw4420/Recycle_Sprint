@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/ranking.css">
+</head>
+<body>
+<img src="/img/trophy.png" alt="" class="trophyIMG">
+<div class="title">현재 순위</div>
+<div class="detail-rank">
+<!--  <a href="#">전국 순위</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-->
+<!--  <a href="#">지역 순위</a>-->
+  <h3 th:text=${area}></h3>
+</div>
+<div class="ranking-wrap">
+  <div class="index">
+    <div>순위</div>
+    <div>아이디</div>
+    <div>점수</div>
+  </div>
+
+
+  <tr th:each="rank: ${rank}">
+  <div class="user-rank-info">
+<!--    <div class="rank" th:if="${rank}" th:text="${rank}">None</div>-->
+    <div class="rank"  th:text="${rank.ranking}">None</div>
+    <div class="user"  th:text="${rank.email}" >haohao</div>
+    <div class="score"  th:text="${rank.point}" >20000725</div>
+  </div>
+    </tr>
+<!--  th:text=${user.name}-->
+<!--  -->
+<!--  &lt;!&ndash; 10등까지 목록 정보 &ndash;&gt;-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">1등</div>-->
+<!--    <div class="user">haohao</div>-->
+<!--    <div class="score">20000725</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">2등</div>-->
+<!--    <div class="user">dabangzzang</div>-->
+<!--    <div class="score">3400</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">3등</div>-->
+<!--    <div class="user">엇뭐야이거</div>-->
+<!--    <div class="score">200</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">4등</div>-->
+<!--    <div class="user">다어긋나네~~엑!</div>-->
+<!--    <div class="score">1730</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">순위</div>-->
+<!--    <div class="user">아이디</div>-->
+<!--    <div class="score">점수</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">순위</div>-->
+<!--    <div class="user">아이디</div>-->
+<!--    <div class="score">점수</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">순위</div>-->
+<!--    <div class="user">아이디</div>-->
+<!--    <div class="score">점수</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">순위</div>-->
+<!--    <div class="user">아이디</div>-->
+<!--    <div class="score">점수</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">순위</div>-->
+<!--    <div class="user">아이디</div>-->
+<!--    <div class="score">점수</div>-->
+<!--  </div>-->
+<!--  <div class="user-rank-info">-->
+<!--    <div class="rank">순위</div>-->
+<!--    <div class="user">아이디</div>-->
+<!--    <div class="score">점수</div>-->
+<!--  </div>-->
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;700&display=swap');
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #FDF2F2;
+    -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+}
+
+.showPicture{
+    position: absolute;
+    top: 24%;
+    left: 1%;
+    width: 380px;
+    height: 60vh;
+    border-radius: 20px;
+}
+
+.sumbitBTN{
+    position: absolute;
+    bottom: 3%;
+    left: 75%;
+    font-weight: 700;
+    border-radius: 20px;
+}

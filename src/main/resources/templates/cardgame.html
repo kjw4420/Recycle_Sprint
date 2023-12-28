@@ -15,6 +15,24 @@
         <p>얼마나 알고 있을까? 퀴즈를 통해 알아보자! 😁</p>
     </div>
     <button class="start-button" type="button">게임시작</button>
+<body>
+<form th:action="@{/oxgame}" method="post" >
+    <div sec:authorize="isAuthenticated()">
+        <input  name="score" id="score" style="display: none;"/>
+        <button class="buttons" type="submit" id="hidebutton" style="display: none;     width: 130px;
+    height: 30px;
+    background-color: #8af2cf;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    margin: 15px 0;
+    font-family: 'GmarketSansMedium';
+    position: absolute;
+    left: 33%;
+    top: 25%;" >포인트 저장하기</button>
+    </div>
+</form>
+</body>
     <h4 class="timer"></h4> <br>
     <div class="card-container"></div>
     <link rel="stylesheet" href="./index.css">

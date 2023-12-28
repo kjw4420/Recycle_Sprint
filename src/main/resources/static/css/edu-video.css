@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PyeongChangPeace-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    color: black;
+    background-color: #FDF2F2;
+}
+
+.user-wrap {
+    display: flex;
+    justify-content: left;
+    padding: 30px 30px 0px 30px;
+    margin-top: 25%;
+}
+
+.user-name {
+    font-family: 'GmarketSansMedium';
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.comment {
+    font-family: 'GmarketSansMedium';
+    margin-left: 30px;
+    font-size: 15px;
+    color: lightslategray;
+}
+
+.account-info {
+    width: 83vw;
+    height: 10vh;
+    background-color: rgb(249, 249, 249);
+    border-radius: 20px;
+    margin: 20px;
+    padding: 3px 0px 0px 15px;
+    box-shadow: 0px 1px 3px rgb(229, 229, 229);
+    font-size: 13px;
+    font-family: 'S-CoreDream-3Light';
+    color: rgb(241, 57, 210);
+}
+
+.account-info div {
+    font-size: 17px;
+    color: rgb(86, 84, 84);
+    font-family: 'GmarketSansMedium';
+}

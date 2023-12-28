@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📸 사진 업로드 📸</title>
+  <link rel="stylesheet" href="/css/picture_result.css">
+</head>
+<body>
+<h2 style="font-size: 30px; position: absolute; top: 6%;  background: linear-gradient(to top, #ff8dbd 40%, transparent 40%);">사진을 올려보세요!</h2>
+<p style="font-weight: 200; position: absolute; top: 15%;">어떻게 버려야할지 헷갈리나요? 사진을 찍어 올려보세요!</p>
+<div class="showPicture">
+  <!--<img src="about:blank" alt="" onerror="this.src='/img/camera.png'" id="show-picture" style="width: 380px; height: 60vh; position: absolute; border-radius: 20px; "> <!--전송된 파일을 불러옴-->
+  <!--<img th:src="@{${image}}" id="show-picture" style="width: 380px; height: 60vh; position: absolute; border-radius: 20px; >-->
+  <p id="error"></p>
+  <h2 th:if="${error}" th:text="${error}"></h2>
+  <img th:src="'data:image/png;base64,' + ${base64Image}" alt="이미지 설명" style="width: 380px; height: 60vh; position: absolute; border-radius: 20px; ">
+
+</div>
+<div class="container">
+  <section class="main-content">
+    <h2 th:if="${data}" th:text="${data}" style="margin-bottom:100px;"></h2>
+  </section>
+</div>
+</body>
+
+<script>
+    (function () {
+        var takePicture = document.querySelector("#take-picture"),
+            showPicture = document.querySelector("#show-picture");
+
+        if (takePicture && showPicture) {
+            // Set events
+            takePicture.onchange = function (event) { // 촬영된 사진이 전송되면
+                var files = event.target.files,
+                    file;
+                if (files && files.length > 0) {
+                    file = files[0];
+                    try {
+                        var imgURL = window.URL.createObjectURL(file);
+                        showPicture.src = imgURL; // 이미지의 src 설정
+                        URL.revokeObjectURL(imgURL);
+                    }
+                    catch (e) {
+                        try {
+                            // Fallback if createObjectURL is not supported
+                            var fileReader = new FileReader();
+                            fileReader.onload = function (event) {
+                                showPicture.src = event.target.result;
+                            };
+                            fileReader.readAsDataURL(file);
+                        }
+                        catch (e) {
+                            //
+                            var error = document.querySelector("#error");
+                            if (error) {
+                                error.innerHTML = "Neither createObjectURL or FileReader are supported";
+                            }
+                        }
+                    }
+                }
+            };
+        }
+    })();
+
+     function btn(sample) {
+            alert(sample);
+        }
+
+var dataValue = "[[${data}]]";
+
+if (dataValue == '[플라스틱]') {
+    alert('테이크아웃 잔은 컵 홀더와 분리하여 내용물을 세척한 뒤 배출해야 해요!');
+} else if (dataValue == '[일반쓰레기]'){
+    alert('종량제 봉투에 배출해요!');
+} else if (dataValue == '[유리]') {
+    alert('????')
+}
+
+
+</script>
+</html>
+

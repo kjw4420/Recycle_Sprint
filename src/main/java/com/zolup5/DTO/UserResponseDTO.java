@@ -20,7 +20,7 @@ public class UserResponseDTO {
         this.email = user.getEmail();
         this.area = user.getArea();
         this.point = user.getPoint();
-        this.trash = user.getTrash();
+        this.trash = user.getTrashcode();
         this.role = user.getRole();
     }
 }

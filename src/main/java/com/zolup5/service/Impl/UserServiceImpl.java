@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
             userFormDTO.setPoint("0");
         }
         userFormDTO.setPassword(passwordEncoder.encode(userFormDTO.getPassword()));
+
         Member user = Member.builder()
                 .username(userFormDTO.getUsername())
                 .email(userFormDTO.getEmail())
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
                 .role(Role.USER)
                 .build();
 
-        return userRepository.save(user).getAccounts_id();
+        return userRepository.save(user).getPid();
     }
 
     @Autowired
