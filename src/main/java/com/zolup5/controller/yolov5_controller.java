@@ -172,7 +172,7 @@ public class yolov5_controller {
 
             /*회원별 키워드 저장*/
             //회원 id 값으로 trashcode 받아오기
-            Member accounts = accountsRepository.findById(pid).orElse(null); //실험을 위해 7번 사용자의 것 받아온거임
+            Member accounts = accountsRepository.findById(pid).orElse(null); 
             log.info("회원이 가지고 있던 코드: "+accounts.getTrashcode());
 
 
