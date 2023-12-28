@@ -162,6 +162,7 @@ if request.files.get("image"):
 <div align="center">
   Springboot/Yolov5_controller/trashcode 중복 제거 부분 코드
 </div><br/>
+
 ## 👩🏻‍💻 멤버
 
 
@@ -181,6 +182,7 @@ if request.files.get("image"):
 | 조서현      |   https://github.com/westnowise      |
 
 
+<br>
 
 ## :hammer_and_wrench: 사용 기술
 
