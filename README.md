@@ -23,7 +23,7 @@
 ![포폴_졸프_포스터](https://github.com/kjw4420/Spring_Recycle/assets/97749184/7aaaa9d9-adcf-4737-a163-4113c1f11334)
 
 
-# 📝문제해결: Json Parsing
+## :bookmark_tabs: 문제해결: Json Parsing
 
 Springboot에서 Json 데이터를 받아 파싱 해 사용해 본 것은 처음이었습니다. 첫 버전에서는 ‘Flask에서 보낸 데이터를 SpringBoot에서 처리가 아닌 받는다’에만 집중해 Flask에서 Json 데이터를 자체적으로 SpringBoot 서비스에서 요구하는 형태로 변형해 전달했습니다.
 
@@ -43,9 +43,16 @@ if request.files.get("image"):
         return jsonify(res)
 ```
 
-Flask/restapi.py
+<div align="center">
+  Flask/restapi.py
+</div><br/>
 
 하지만 위 코드는 데이터의 형식/구성이 조금만 변해도 오류가 잘못된 데이터가 넘어오는 오류가 빈번하게 발생했고, Json 자료형의 장점을 전혀 사용하지 못하고 있다는 생각이 들었습니다. 이를 개선하기 위해 두 번째 버전에서는 SpringBoot 단에서 Json.Simple 라이브러리로 JsonObject/ Parser을 생성해 Json 데이터를 Parsing 했습니다. ~~데이터가 마트료시카 인형처럼 벗겨진다는 생각이 들었습니다.~~ 개발자가 성능 향상을 위해 끊임없이 고민해야 하는 이유를 몸소 체험한 계기였습니다. 사소한 코드를 몇 줄 바꿨는데 그 이상의 성능 향상을 경험했습니다.
+
+
+## :bookmark_tabs: SpringBoot 서버에서 객체인식 API 처리
+- API 서버로  POST요청을 넣어 객체인식을 마친 후 받아온 JSON 객체를 json.simple 라이브러리를 이용해 파싱했다.
+- 이 결과를 이용해 사용자 화면에 결과 값을 보여주고, 도감에 해당 내용을 저장한다.
 
 ## 👩🏻‍💻 멤버
 
